@@ -2,6 +2,7 @@ from django.shortcuts import render,get_object_or_404
 from .models import Post,Category
 import markdown
 from comments.forms import CommnetForm
+from django.views.generic import ListView
 
 def index(request):
     post_list = Post.objects.all().order_by('-created_time')
@@ -44,3 +45,5 @@ def category(request,pk):
         'post_list':post_list
     })
 
+class IndexView(ListView):
+    model = Post
