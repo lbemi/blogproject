@@ -11,6 +11,7 @@ def index(request):
 
 def detail(request, pk):
     post = get_object_or_404(Post, pk=pk)
+    post.increase_views()
     post.body = markdown.markdown(post.body,
                                   extensions = [
                                       'markdown.extensions.extra',
@@ -42,3 +43,4 @@ def category(request,pk):
     return render(request, 'blog/index.html',context={
         'post_list':post_list
     })
+
